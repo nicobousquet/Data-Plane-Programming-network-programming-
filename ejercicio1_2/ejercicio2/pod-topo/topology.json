@@ -1,0 +1,27 @@
+{
+    "hosts": {
+        "h1": {"ip": "10.0.1.1/24", "mac": "08:00:00:00:01:11",
+               "commands":["route add default gw 10.0.1.10 dev eth0",
+                           "arp -i eth0 -s 10.0.1.10 08:00:00:00:01:10",
+                           "arp -i eth0 -s 10.0.1.2 08:00:00:00:01:12"]},
+        "h2": {"ip": "10.0.1.2/24", "mac": "08:00:00:00:01:12",
+               "commands":["route add default gw 10.0.1.20 dev eth0",
+                           "arp -i eth0 -s 10.0.1.20 08:00:00:00:01:20",
+                           "arp -i eth0 -s 10.0.1.1 08:00:00:00:01:11"]},
+        "h3": {"ip": "10.0.2.1/24", "mac": "08:00:00:00:02:11",
+               "commands":["route add default gw 10.0.2.10 dev eth0",
+                           "arp -i eth0 -s 10.0.2.10 08:00:00:00:02:10",
+                           "arp -i eth0 -s 10.0.2.2 08:00:00:00:02:12"]},
+        "h4": {"ip": "10.0.2.2/24", "mac": "08:00:00:00:02:12",
+               "commands":["route add default gw 10.0.2.20 dev eth0",
+                           "arp -i eth0 -s 10.0.2.20 08:00:00:00:02:20",
+                           "arp -i eth0 -s 10.0.2.1 08:00:00:00:02:11"]}
+    },
+    "switches": {
+        "s1": { "runtime_json" : "pod-topo/s1-runtime.json"},
+        "s2": { "runtime_json" : "pod-topo/s2-runtime.json"}
+    },
+    "links": [
+        ["h1", "s1-p1"], ["h2", "s1-p2"], ["h3", "s2-p1"], ["h4", "s2-p2"], ["s1-p3", "s2-p3"]
+    ]
+}
